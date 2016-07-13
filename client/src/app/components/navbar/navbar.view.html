@@ -1,0 +1,17 @@
+<div class = "navbar-wrapper">
+  <ul class = "navbar">
+    <li> <a ui-sref="home">Home</a></li>
+    <li> <a ui-sref="about">About</a></li>
+    <input class = "search" type="text" placeholder="search" ng-model="searchText">
+  </ul>
+  <div class="navbar-navigator">
+    <h3>My phone magazine</h3>
+    <select ng-model="sortBy" ng-change ="sorting(sortBy)" ng-show="showSorting()">
+      <option value="">---Выберите метод сортировки---</option>
+      <option ng-repeat="sortOption in sortOptions"
+              value="{{sortOption.value}}">{{sortOption.option}}</option>
+
+    </select>
+  </div>
+
+</div>

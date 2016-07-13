@@ -1,0 +1,25 @@
+<div class = "view-wrapper"  ng-controller="MainController as vm">
+<div ng-repeat="phone in vm.phones | filter:searchText | orderBy:sortBy " class="phone-item">
+
+  <div class="phone-img-wrapper">
+    <a ui-sref ="details({phoneId: phone._id})">
+    <img ng-src="http://localhost:4001/api/v1/{{phone.imgUrl}}" alt="">
+    </a>
+  </div>
+  <a ui-sref ="details({phoneId: phone._id})">
+    <h4 class = "phone-name">{{phone.name}}</h4>
+  </a>
+  <div class="price-wrapper">
+    <span class="phone-price">${{phone.price}}</span>
+  </div>
+  <ul class="phone-characteristics">
+    <li>Some text1</li>
+    <li>Some text2</li>
+  </ul>
+  <button class="add-to-backet">Add</button>
+</div>
+
+
+</div>
+
+

@@ -1,0 +1,72 @@
+<div class="view-wrapper" ng-controller="DetailsController as DtCntr">
+  <div class="phone-details-wrapper">
+    <div class="details-images-wrapper">
+        <ul class="imgs-collection">
+          <li class = "big-img-wrapper">
+            <img class="big-image" ng-src="http://localhost:4001/api/v1/{{DtCntr.mainImageUrl}}" >
+          </li>
+          <li ng-repeat="img in DtCntr.phoneItem.images">
+            <img ng-src="http://localhost:4001/api/v1/{{img}}" ng-click="DtCntr.showImage(img)">
+          </li>
+        </ul>
+      </div>
+    <div class="phone-description">
+      <h3 class="model-name">
+        {{DtCntr.phoneItem.name}}
+      </h3>
+      <span class="specification">Specification:</span>
+
+      <div class="phone-specification">
+        <ul class="description">
+          <!--<ul ng-repeat="(spec, poz) in phoneItem">{{spec}}-->
+            <!--<li ng-repeat="(key, item) in poz">-->
+              <!--{{key}}: {{item}}-->
+            <!--</li>-->
+          <!--</ul>-->
+          <ul>
+            <li>Additional Features: <span>{{DtCntr.phoneItem.additionalFeatures}}</span></li>
+          </ul>
+          <ul>
+            <li>Android <span ng-repeat="(key, value) in DtCntr.phoneItem.android">{{key}}: {{value}}</li>
+          </ul>
+          <!--<li>OS: <span>{{phoneItem.android.os}}</span></li>-->
+          <!--<li>UI: <span>{{phoneItem.android.ui}}</span></li>-->
+          <li>Battery <span ng-repeat="(key, value) in DtCntr.phoneItem.battery">{{key}}: {{value}} </span> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="comments-wrapper">
+    <div class="add-review">
+      <h3>Reviwes:</h3>
+      <button class="add-review-btn" ng-click = "hideComment = !hideComment">Add review</button>
+    </div>
+    <div class="add-comment-wrapper" ng-show = "hideComment">
+      <form name="commentForm">
+        <input type="text"
+               placeholder="Autor"
+               class="add-comment-author"
+               ng-model="DtCntr.inputAuthor"
+               name = "commentFormAuthor"
+               required>
+        <span ng-show = "commentForm.commentFormAuthor.$error.required">Input your name</span>
+        <textarea class="add-comment-text"
+                  placeholder="Comment"
+                  ng-model="DtCntr.textarea"
+                  name = "commentFormText"
+                  required></textarea>
+        <span ng-show = "commentForm.commentFormText.$invalid">Input your comment</span>
+        <button class="btn"
+                ng-disabled="commentForm.$invalid"
+                ng-click="DtCntr.addComment()" >Post comment</button>
+      </form>
+
+
+
+    </div>
+    <comments ng-repeat = "comment in DtCntr.comments" comment = "comment"></comments>
+  </div>
+</div>
+
+
+
